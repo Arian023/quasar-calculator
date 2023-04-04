@@ -1,0 +1,38 @@
+{
+  "name": "com.arian023.calculator",
+  "version": "0.0.1",
+  "description": "Calculator with extra tools",
+  "productName": "Calculator",
+  "author": "Arian Acevedo <https://github.com/Arian023>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.2",
+    "mathjs": "^11.8.0",
+    "quasar": "^2.11.10",
+    "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.4.0",
+    "@quasar/app-vite": "^1.2.1",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

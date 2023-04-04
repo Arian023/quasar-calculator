@@ -1,0 +1,152 @@
+<template>
+  <q-page>
+    <div class="row justify-center">
+      <div class="col-12 col-md-6">
+        <q-card bordered>
+          <q-card-section>
+            <div class="text-h5 text-grey-6 text-right">
+              {{ actual || acum ? acum + actual : "&nbsp;" }}
+            </div>
+          </q-card-section>
+
+          <q-separator inset />
+          <q-card-section>
+            <div class="text-h3 text-right">{{ result }}</div>
+          </q-card-section>
+          <q-card-section>
+            <div class="row q-col-gutter-sm">
+              <div
+                class="col-3"
+                v-for="(btnLabel, index) in buttonsCalc"
+                :key="index"
+                @click="btnAction(btnLabel)"
+              >
+                <q-btn
+                  class="full-width text-h6"
+                  :color="isNaN(btnLabel) ? 'indigo' : 'grey-2'"
+                  :text-color="isNaN(btnLabel) ? 'white' : 'grey-8'"
+                  >{{ btnLabel }}</q-btn
+                >
+              </div>
+              <div class="col-6">
+                <q-btn
+                  class="full-width text-h6"
+                  color="indigo"
+                  @click="btnReset"
+                  >Reset</q-btn
+                >
+              </div>
+              <div class="col-6">
+                <q-btn
+                  class="full-width text-h6"
+                  color="orange"
+                  @click="btnResult"
+                  >=</q-btn
+                >
+              </div>
+            </div>
+          </q-card-section>
+          <q-separator inset />
+          <q-card-section>
+            <div class="text-h5">Historial:</div>
+            <pre>{{ historyResults }}</pre>
+          </q-card-section>
+        </q-card>
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<script>
+import { ref, defineComponent } from "vue";
+import { evaluate, round } from "mathjs";
+
+export default defineComponent({
+  name: "IndexPage",
+  setup() {
+    const buttonsCalc = [
+      7,
+      8,
+      9,
+      "%",
+      4,
+      5,
+      6,
+      "+",
+      1,
+      2,
+      3,
+      "-",
+      ".",
+      0,
+      "/",
+      "*",
+    ];
+    const actual = ref(0);
+    const acum = ref("");
+    const result = ref(0);
+    const operatorClick = ref(true);
+    const historyResults = ref([]);
+    /** Genera la expresión a evaluar
+     * @param {string|number} valueBtn - El valor del botón pulsado.
+     */
+    const btnAction = (valueBtn) => {
+      if (isNaN(valueBtn)) {
+        calc(valueBtn);
+      } else {
+        if (operatorClick.value) {
+          actual.value = "";
+          operatorClick.value = false;
+        }
+        actual.value = `${actual.value}${valueBtn}`;
+      }
+    };
+    /** Evalúa qué operación fue pulsada y la aplica
+     * @param {string|number} valueBtn - El valor del botón pulsado.
+     */
+    const calc = (valueBtn) => {
+      if (valueBtn === ".") {
+        if (actual.value.indexOf(".") === -1) {
+          actual.value = `${actual.value}${valueBtn}`;
+        }
+        return;
+      }
+      if (valueBtn === "%") {
+        if (actual.value !== "")
+          actual.value = `${parseFloat(actual.value) / 100}`;
+        return;
+      }
+      addOperator(valueBtn);
+    };
+    const addOperator = (valueBtn) => {
+      if (operatorClick.value) {
+      } else {
+        acum.value += `${actual.value} ${valueBtn} `;
+        actual.value = "";
+        operatorClick.value = true;
+      }
+    };
+    const btnReset = () => {
+      (actual.value = ""), (acum.value = ""), (operatorClick.value = true);
+    };
+    const btnResult = () => {
+      if (!operatorClick.value) {
+        result.value = evaluate(acum.value + actual.value);
+        historyResults.value.push(
+          `${acum.value}${actual.value} = ${result.value}`
+        );
+      }
+    };
+    return {
+      buttonsCalc,
+      actual,
+      acum,
+      result,
+      historyResults,
+      btnAction,
+      btnReset,
+      btnResult,
+    };
+  },
+});
+</script>
