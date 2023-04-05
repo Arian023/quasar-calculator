@@ -1,11 +1,11 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-sm-8 col-md-6">
         <q-card bordered>
           <q-card-section>
             <div class="text-h5 text-grey-6 text-right">
-              {{ actual || acum ? acum + actual : "&nbsp;" }}
+              {{ actual || acum ? acum + actual : '&nbsp;' }}
             </div>
           </q-card-section>
 
@@ -16,14 +16,13 @@
           <q-card-section>
             <div class="row q-col-gutter-sm">
               <div
-                class="col-3"
                 v-for="(btnLabel, index) in buttonsCalc"
                 :key="index"
-                @click="btnAction(btnLabel)"
-              >
+                class="col-3"
+                @click="btnAction(btnLabel)">
                 <q-btn
                   class="full-width text-h6"
-                  :color="isNaN(btnLabel) ? 'indigo' : 'grey-2'"
+                  :color="isNaN(btnLabel) ? 'secondary' : 'grey-2'"
                   :text-color="isNaN(btnLabel) ? 'white' : 'grey-8'"
                   >{{ btnLabel }}</q-btn
                 >
@@ -31,18 +30,20 @@
               <div class="col-6">
                 <q-btn
                   class="full-width text-h6"
-                  color="indigo"
+                  color="secondary"
                   @click="btnReset"
-                  >Reset</q-btn
-                >
+                  @keydown.delete="btnReset">
+                  Reset
+                </q-btn>
               </div>
               <div class="col-6">
                 <q-btn
                   class="full-width text-h6"
-                  color="orange"
+                  color="primary"
                   @click="btnResult"
-                  >=</q-btn
-                >
+                  @keydown.enter="btnResult">
+                  =
+                </q-btn>
               </div>
             </div>
           </q-card-section>
@@ -58,85 +59,84 @@
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
-import { evaluate, round } from "mathjs";
+import { ref, defineComponent } from 'vue'
+import { evaluate, round } from 'mathjs'
 
 export default defineComponent({
-  name: "IndexPage",
+  name: 'IndexPage',
   setup() {
     const buttonsCalc = [
       7,
       8,
       9,
-      "%",
+      '%',
       4,
       5,
       6,
-      "+",
+      '+',
       1,
       2,
       3,
-      "-",
-      ".",
+      '-',
+      '.',
       0,
-      "/",
-      "*",
-    ];
-    const actual = ref(0);
-    const acum = ref("");
-    const result = ref(0);
-    const operatorClick = ref(true);
-    const historyResults = ref([]);
+      '/',
+      '*',
+    ]
+    const actual = ref(0)
+    const acum = ref('')
+    const result = ref(0)
+    const operatorClick = ref(true)
+    const historyResults = ref([])
     /** Genera la expresión a evaluar
      * @param {string|number} valueBtn - El valor del botón pulsado.
      */
     const btnAction = (valueBtn) => {
       if (isNaN(valueBtn)) {
-        calc(valueBtn);
+        calc(valueBtn)
       } else {
         if (operatorClick.value) {
-          actual.value = "";
-          operatorClick.value = false;
+          actual.value = ''
+          operatorClick.value = false
         }
-        actual.value = `${actual.value}${valueBtn}`;
+        actual.value = `${actual.value}${valueBtn}`
       }
-    };
+    }
     /** Evalúa qué operación fue pulsada y la aplica
      * @param {string|number} valueBtn - El valor del botón pulsado.
      */
     const calc = (valueBtn) => {
-      if (valueBtn === ".") {
-        if (actual.value.indexOf(".") === -1) {
-          actual.value = `${actual.value}${valueBtn}`;
+      if (valueBtn === '.') {
+        if (actual.value.indexOf('.') === -1) {
+          actual.value = `${actual.value}${valueBtn}`
         }
-        return;
+        return
       }
-      if (valueBtn === "%") {
-        if (actual.value !== "")
-          actual.value = `${parseFloat(actual.value) / 100}`;
-        return;
+      if (valueBtn === '%') {
+        if (actual.value !== '')
+          actual.value = `${parseFloat(actual.value) / 100}`
+        return
       }
-      addOperator(valueBtn);
-    };
+      addOperator(valueBtn)
+    }
     const addOperator = (valueBtn) => {
-      if (operatorClick.value) {
-      } else {
-        acum.value += `${actual.value} ${valueBtn} `;
-        actual.value = "";
-        operatorClick.value = true;
+      if (!operatorClick.value) {
+        acum.value += `${actual.value} ${valueBtn} `
+        actual.value = ''
+        operatorClick.value = true
       }
-    };
+    }
     const btnReset = () => {
-      (actual.value = ""), (acum.value = ""), (operatorClick.value = true);
-    };
+      ;(actual.value = ''), (acum.value = ''), (operatorClick.value = true)
+    }
     const btnResult = () => {
       if (!operatorClick.value) {
-        result.value = evaluate(acum.value + actual.value);
+        result.value = evaluate(acum.value + actual.value)
         historyResults.value.push(
           `${acum.value}${actual.value} = ${result.value}`
-        );
+        )
       }
-    };
+    }
     return {
       buttonsCalc,
       actual,
@@ -146,7 +146,7 @@ export default defineComponent({
       btnAction,
       btnReset,
       btnResult,
-    };
+    }
   },
-});
+})
 </script>

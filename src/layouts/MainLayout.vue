@@ -8,8 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+          @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
           <q-avatar>
@@ -18,7 +17,7 @@
           Calculadora
         </q-toolbar-title>
 
-        <div>Hecho por Arian con Quasar v{{ $q.version }}</div>
+        <div><!-- Right side text - empty --></div>
       </q-toolbar>
     </q-header>
 
@@ -29,8 +28,7 @@
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
-          v-bind="link"
-        />
+          v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -41,64 +39,49 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
+import { defineComponent, ref } from 'vue'
+import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: "Docs",
-    icon: "school",
-    link: "https://quasar.dev",
+    title: 'Calculadora',
+    icon: 'home',
+    link: '/',
   },
   {
-    title: "Github",
-    icon: "code",
-    link: "https://github.com/quasarframework",
+    title: 'Acerca',
+    icon: 'people',
+    link: '/about',
   },
   {
-    title: "Discord Chat Channel",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
+    title: 'Github',
+    icon: 'code',
+    link: 'https://github.com/Arian023/quasar-calculator',
   },
   {
-    title: "Forum",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
+    title: 'Mi portafolio',
+    icon: 'public',
+    link: 'https://arian-acevedo.netlify.app/',
   },
-  {
-    title: "Twitter",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-  {
-    title: "Facebook",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
-  },
-];
+]
 
 export default defineComponent({
-  name: "MainLayout",
+  name: 'MainLayout',
 
   components: {
     EssentialLink,
   },
 
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(false)
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
+        leftDrawerOpen.value = !leftDrawerOpen.value
       },
-    };
+    }
   },
-});
+})
 </script>
