@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="row justify-center">
+    <div class="row flex-center">
       <div class="col-12 col-sm-8 col-md-6">
         <q-card bordered>
           <q-card-section>
@@ -25,7 +25,7 @@
                 <q-btn
                   class="full-width text-h6"
                   :color="isNaN(btnLabel) ? 'secondary' : 'grey-2'"
-                  :text-color="isNaN(btnLabel) ? 'white' : 'grey-8'"
+                  text-color="grey-9"
                   >{{ btnLabel }}</q-btn
                 >
               </div>
@@ -33,6 +33,7 @@
                 <q-btn
                   class="full-width text-h6"
                   color="secondary"
+                  text-color="grey-9"
                   @click="btnReset"
                   @keydown.delete="btnReset">
                   Reset

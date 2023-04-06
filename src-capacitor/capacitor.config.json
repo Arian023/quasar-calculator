@@ -1,0 +1,7 @@
+{
+  "appId": "com.arian023.calculator",
+  "appName": "Calculator",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

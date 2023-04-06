@@ -1,0 +1,11 @@
+{
+  "name": "com.arian023.calculator",
+  "version": "0.0.1",
+  "description": "Calculator with extra tools",
+  "author": "Arian Acevedo <https://github.com/Arian023>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}
