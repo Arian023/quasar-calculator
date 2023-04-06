@@ -1,41 +1,57 @@
-# Calculator (com.arian023.calculator)
+<p align="center">
+  <img src="./src/assets/me.png" height="140">
+  <h1 align="center">Calculadora</h1>
+  <h3 align="center">Desarrollado mediante Quasar (Vue 3) y Vite</h3>
+</p>
 
-Calculator with extra tools
+## Descripción 📝
 
-## Install the dependencies
+Una simple calculadora estándar.
+
+_Próximamente agregaré funciones extras a la calculadora, así como otras herramientas en un menú lateral._
+
+## Construido con 🛠
+
+- [Quasar](https://quasar.dev/) - Framework UI basado en VueJS para despliegue multiplataforma
+- [VueJS](https://vuejs.org/) - Framework JavaScript intuitivo, veloz y versátil
+- [Vite](https://vitejs.dev/) - Compilador rápido y servidor local
+
+> Basado en el tutorial de Bluuweb: https://youtu.be/HP5b3d-RLLQ
+
+## Cómo empezar a desarrollar 🚀
+
+Alternativamente, ver online al instante con StackBlitz:
+[![Abrir en StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Arian023/quasar-calculator)
+
+### Clonar este repositorio
+
 ```bash
-yarn
-# or
-npm install
+$ git clone https://github.com/Arian023/quasar-calculator.git
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
+### Instalar dependencias ⏬
+
+> _Sugiero [PNPM](https://pnpm.io/) antes que NPM (por defecto incluido en Node.js) para mayor rapidez y ahorrar espacio en disco._
+
+Para más funciones con Quasar CLI, instalarlo con `pnpm install -g @quasar/cli`
+
+```sh
+$ cd quasar-calculator
+$ pnpm i
 ```
 
+### Empezar servidor local de desarrollo 🔧
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
+```sh
+$ quasar dev
 ```
 
+### Compilar para producción 📦
 
-### Format the files
-```bash
-yarn format
-# or
-npm run format
+```sh
+$ quasar build
 ```
 
+### Personalizar la configuración
 
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+Ver [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

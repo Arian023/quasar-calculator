@@ -2,7 +2,7 @@
   "name": "com.arian023.calculator",
   "version": "0.0.1",
   "description": "Calculator with extra tools",
-  "productName": "Calculator",
+  "productName": "Calculadora",
   "author": "Arian Acevedo <https://github.com/Arian023>",
   "private": true,
   "scripts": {
