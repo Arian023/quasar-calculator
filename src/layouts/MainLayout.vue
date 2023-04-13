@@ -39,18 +39,18 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { defineComponent, ref } from 'vue';
+import EssentialLink from 'components/EssentialLink.vue';
 
 const linksList = [
   {
     title: 'Calculadora',
-    icon: 'home',
+    icon: 'calculate',
     link: '/',
   },
   {
     title: 'Acerca',
-    icon: 'people',
+    icon: 'info',
     link: '/about',
   },
   {
@@ -60,10 +60,10 @@ const linksList = [
   },
   {
     title: 'Mi portafolio',
-    icon: 'public',
+    icon: 'next_week',
     link: 'https://arian-acevedo.netlify.app/',
   },
-]
+];
 
 export default defineComponent({
   name: 'MainLayout',
@@ -73,15 +73,15 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(false);
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value
+        leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-    }
+    };
   },
-})
+});
 </script>

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="row flex-center">
-      <div class="col-12 col-sm-8 col-md-6">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <q-card bordered>
           <q-card-section>
             <div class="text-h5 text-grey-6 text-right">
@@ -50,11 +50,16 @@
               </div>
             </div>
           </q-card-section>
-          <q-separator inset />
-          <q-card-section>
-            <div class="text-h5">Historial:</div>
-            <pre>{{ historyResults }}</pre>
-          </q-card-section>
+          <q-separator />
+          <q-expansion-item icon="schedule" label="Historial">
+            <q-card>
+              <q-card-section>
+                <q-list v-for="(entry, index) in historyResults" :key="index">
+                  <q-item> {{ entry }} </q-item>
+                </q-list>
+              </q-card-section>
+            </q-card>
+          </q-expansion-item>
         </q-card>
       </div>
     </div>
@@ -132,11 +137,11 @@ const btnReset = () => {
 const btnResult = () => {
   if (!operatorClick.value) {
     result.value = evaluate(expression.value + actualValue.value);
-    expression.value = result.value;
-    actualValue.value = '';
     historyResults.value.push(
       `${expression.value}${actualValue.value} = ${result.value}`
     );
+    expression.value = result.value;
+    actualValue.value = '';
   }
 };
 </script>
